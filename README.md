@@ -86,6 +86,67 @@ This project is a small Python-based social network system that stores users and
 - `tests/`
   - Present in the project but not currently populated.
 
+## System Design Process
+
+### 1. Use Cases Generation
+
+The project supports these main use cases:
+
+- User registration and login.
+- Sending and accepting friend requests.
+- Viewing the friendship network.
+- Recommending friends based on friends-of-friends.
+- Undoing the last friendship action.
+- Deleting a user and removing their friendships.
+- Running either a CLI version (`main.py`) or a web version (`app.py`).
+
+### 2. Constraints and Analysis
+
+Important constraints and analysis decisions:
+
+- The system uses MySQL for persistent storage.
+- User data and friendships are stored in simple `users` and `friends` tables.
+- The in-memory representation is an adjacency list in `FriendManager`.
+- Passwords are stored in plaintext for this prototype, but hashing is recommended.
+- The app must run locally and requires a MySQL server.
+- The web interface is implemented with Flask and the CLI interface with Python terminal input.
+
+### 3. Basic Design
+
+The architecture includes:
+
+- `app.py` for the Flask web interface.
+- `main.py` for the terminal-based CLI interface.
+- `system/friend_manager.py` for core social network operations.
+- `system/recommendation_engine.py` for friend recommendations.
+- `database/db_connection.py` for MySQL connectivity.
+
+Data flow:
+
+- Controllers (`main.py` / `app.py`) call `FriendManager` methods.
+- `FriendManager` loads users and friendships from the database into an adjacency list.
+- Actions update both the in-memory graph and the database.
+
+### 4. Bottlenecks
+
+Current bottlenecks include:
+
+- Friend recommendations iterate friends-of-friends, which can grow in cost as the network grows.
+- `FriendManager` stores the whole network in memory, which is less efficient for very large data sets.
+- The app does not currently persist pending requests, so request handling is simulated.
+- Plaintext password storage is insecure and must be fixed for production.
+
+### 5. Scalability
+
+Planned improvements for better scalability:
+
+- Add a pending-requests table and use proper request state management.
+- Use hashed passwords and stronger authentication.
+- Add database indexes on `username` and friend columns.
+- Move graph operations to more efficient data structures or services for larger networks.
+- Use pagination and web UI caching for large network displays.
+- Consider a REST API backend and a separate frontend for better scaling.
+
 ## Features
 
 - Register new users with username and password.
