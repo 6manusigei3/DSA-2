@@ -2,15 +2,12 @@ def recommend_friends(graph, user):
     if user not in graph:
         return []
 
-    # Direct friends
-    direct_friends = set(graph[user])
+    scores = {}
 
-    recommendations = set()
-
-    # Friends of friends
-    for friend in direct_friends:
+    for friend in graph.get(user, []):
         for fof in graph.get(friend, []):
-            if fof != user and fof not in direct_friends:
-                recommendations.add(fof)
+            if fof != user and fof not in graph[user]:
+                scores[fof] = scores.get(fof, 0) + 1
 
-    return list(recommendations)
+    # Sort by strongest recommendation
+    return sorted(scores, key=scores.get, reverse=True)
