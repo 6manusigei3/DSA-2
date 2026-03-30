@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DSA Social Network</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>DSA Social Network</h1>
+        {% if session.username %}
+        <nav>
+          <a href="{{ url_for('network') }}">Network</a>
+          <a href="{{ url_for('recommendations') }}">Recommendations</a>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        {% endif %}
+      </div>
+    </header>
+
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

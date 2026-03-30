@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="section">
+    <h2>Welcome, {{ user }}</h2>
+    <div class="grid">
+      <div class="card card-large">
+        <h3>Network</h3>
+        {% if network %}
+          <ul>
+            {% for username, friends in network.items() %}
+              <li><strong>{{ username }}</strong> → {{ friends }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No users in network yet.</p>
+        {% endif %}
+      </div>
+      <div class="card">
+        <h3>Actions</h3>
+        <form method="post" action="{{ url_for('send_request') }}">
+          <label>Send friend request to</label>
+          <input type="text" name="receiver" placeholder="username" required />
+          <button type="submit">Send Request</button>
+        </form>
+
+        <form method="post" action="{{ url_for('accept_request') }}">
+          <label>Accept request from</label>
+          <input type="text" name="sender" placeholder="username" required />
+          <button type="submit">Accept Request</button>
+        </form>
+
+        <form method="post" action="{{ url_for('undo') }}">
+          <button type="submit">Undo Last Action</button>
+        </form>
+
+        <form method="post" action="{{ url_for('delete_user') }}">
+          <label>Delete user</label>
+          <input type="text" name="username" placeholder="username" required />
+          <button type="submit">Delete User</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

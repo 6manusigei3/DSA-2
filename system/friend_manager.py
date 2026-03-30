@@ -35,7 +35,7 @@ class FriendManager:
         cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
         if cursor.fetchone():
             print(f"User {username} already exists")
-            return
+            return False
 
         cursor.execute(
             "INSERT INTO users (username, password) VALUES (%s, %s)",
@@ -45,6 +45,7 @@ class FriendManager:
 
         self.network[username] = []
         print(f"User {username} created successfully")
+        return True
 
     # ✅ NEW: login method
     def login(self, username, password):

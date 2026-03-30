@@ -115,11 +115,14 @@ CREATE TABLE friends (
 );
 ```
 
-4. Run the app from the project root:
+4. Install web dependencies and run the web app:
 
 ```bash
-python3 main.py
+pip install -r requirements.txt
+python3 app.py
 ```
+
+5. Open your browser at `http://127.0.0.1:5000`.
 
 ## Notes
 
