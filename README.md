@@ -1,6 +1,6 @@
-# Social Network CLI
+# Social Network App
 
-A small Python-based command-line social network system that stores users and friendships in a MySQL database. It supports registration, login, friend requests, friendship acceptance, recommendations, undoing a friendship action, and deleting users.
+A small Python-based social network system that stores users and friendships in a MySQL database. It supports both a command-line interface and a Flask web interface. The app supports registration, login, friend requests, friendship acceptance, recommendations, undoing a friendship action, and deleting users.
 
 ## Project Structure
 
