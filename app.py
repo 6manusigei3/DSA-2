@@ -3,7 +3,7 @@ from system.friend_manager import FriendManager
 from system.recommendation_engine import recommend_friends
 
 app = Flask(__name__)
-app.secret_key = "replace-this-with-a-secure-key"
+app.secret_key = "eplace-this-with-a-secure-key"
 fm = FriendManager()
 
 
