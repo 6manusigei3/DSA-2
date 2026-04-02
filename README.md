@@ -1,13 +1,6 @@
 # Social Network App
 
-## Group Members
 
-1.Emmanuel Kipchumba   -BSCCS/2025/40046
-2.Weignstone Churchill -BSCCS/2025/39599
-3.Alvin Charles        -BSCCS/2025/39841
-4.James Ndiritu        -BSCCS/2025/39528
-5.Abraham Wambugu      -BSCCS/2025/40383
-6.Susan Wairimu        -BSCCS/2025/39874
 
 ## How to open the project from GitHub
 
